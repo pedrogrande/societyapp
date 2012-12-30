@@ -1,0 +1,80 @@
+
+.sidebar-nav {
+  position:fixed; 
+  right:0; 
+  width:100px;
+  background-color: white;
+  padding: 20px;
+}
+
+.left-bar {
+  background-color: white;
+  padding: 20px
+}
+
+.center-panel {
+  background-color: white;
+  padding: 20px
+}
+
+
+
+.wall-post {
+  background-color: pink;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.post-head {
+  margin-bottom: 20px;
+}
+
+.post-head img {
+ float:left;
+ margin: 0 5px 5px 0;
+ 
+ box-shadow: 3px 3px 4px #999;
+}
+
+.post-user-name {
+  font-size: 12pt;
+}
+
+.post-date {
+  font-size: 8pt;
+
+}
+
+.post-content {
+  min-height: 60px;
+}
+
+.post-actions a {
+  
+  font-size: 8pt ;
+  color: #5192fb;
+  text-decoration: underline;
+}
+
+.post-actions a:hover {
+  text-decoration: underline;
+  background-color: none;
+  color :green ;
+}
+
+.home-event {
+  background-color: #DDD;
+  padding: 5px;
+}
+
+.home-event-invited {
+  background-color: orange;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+/*
+h3 {
+  border: solid 2px #CCC;
+  padding: 0 5px 0 5px;
+}
+*/

@@ -1,4 +1,27 @@
 Societyapp::Application.routes.draw do
+  
+  authenticated :user do
+    root :to => "home#index"
+  end
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
+  devise_for :users
+  resources :users
+
+  resources :societies do
+    member do
+      get :members
+      post :join
+      post :leave
+    end
+  end
+
+  match 'tagged' => 'groups#tagged', :as => 'tagged'
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

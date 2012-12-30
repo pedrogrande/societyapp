@@ -1,0 +1,30 @@
+<%= simple_form_for(@society) do |f| %>
+  <%= f.error_notification %>
+  <% if @society.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
+
+      <ul>
+      <% @society.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :name, :label => 'Choose a name for your society' %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :location_list, :label => 'Location tags (Enter your city, state, country separated by commas)' %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :category_list, :label => 'Category tags (Enter words that describe your society eg. sport, tennis, computers etc)' %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Listing societies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @societies.each do |society| %>
+  <tr>
+    <td><%= society.name %></td>
+    <td><%= society.slug %></td>
+    <td><%= link_to 'Show', society %></td>
+    <td><%= link_to 'Edit', edit_society_path(society) %></td>
+    <td><%= link_to 'Destroy', society, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Society', new_society_path %>
