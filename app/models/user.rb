@@ -31,9 +31,5 @@ class User < ActiveRecord::Base
     self.posts.include?(post)
   end
 
-  after_create :build_profile
 
-  def build_profile
-    build_user_profile(current_user)
-  end
 end

@@ -12,6 +12,9 @@ Role.create([
   { :name => 'VIP' }
 ], :without_protection => true)
 puts 'DEFAULT USERS'
-user2 = User.find_or_create_by_email :name => 'Pete Argent', :email => 'pete@example.com', :password => 'secret', :password_confirmation => 'secret', :slug => 'second-user'
+user2 = User.create! :name => 'John Argent', :email => 'john@example.com', :password => 'secret', :password_confirmation => 'secret', :slug => 'john-argent'
 puts 'user: ' << user2.name
 user2.add_role :admin
+user = User.create! :name => 'John Smith', :email => 'smith@example.com', :password => 'secret', :password_confirmation => 'secret', :slug => 'john-smith'
+puts 'user: ' << user.name
+user.add_role :admin
