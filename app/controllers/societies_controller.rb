@@ -26,7 +26,7 @@ class SocietiesController < ApplicationController
     society = Society.find(society_id)
     if @user.is_member?(society)
       logger.info "Removing user from society #{society.id}"
-      @user.societys.delete(society)
+      @user.societies.delete(society)
       flash[:notice] = 'You have left the society'
     end
     redirect_to society_path
@@ -54,6 +54,7 @@ class SocietiesController < ApplicationController
   # GET /societies/1.json
   def show
     @society = Society.find(params[:id])
+    @posts = @society.posts.all
 
     respond_to do |format|
       format.html # show.html.erb

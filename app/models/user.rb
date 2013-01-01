@@ -17,9 +17,23 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :societies, :through => :memberships
+  has_many :posts
+  has_one :user_profile, :dependent => :destroy
+  has_many :event_invitations
+  has_many :events, :through => :event_invitations
 
   # is person in given society?
   def is_member?(society)
     self.societies.include?(society)
+  end
+
+  def is_poster?(post)
+    self.posts.include?(post)
+  end
+
+  after_create :build_profile
+
+  def build_profile
+    build_user_profile(current_user)
   end
 end

@@ -1,0 +1,32 @@
+<% @user_visible_posts.each do |post| %>
+    <div class="wall-post">
+      <div class="post-head">
+        
+        <%= image_tag("chrispp.png") %>
+        
+        <span class="post-user-name"><%= post.user.try :name %></span>
+        <%= link_to post.society.name, post.society, :class => "btn btn-success btn-small" %><br />
+        <span class="post-date">Posted at: <%= post.created_at.strftime("%I:%M:%P on %A, %e %b %Y") %></span>
+        
+      </div>
+      <div class="post-title">
+        <%= post.title %>
+      </div>
+      <div class="post-content">
+
+        <%= auto_link(post.content) %>
+      </div>
+
+      <div class="post-actions">
+        
+        <a href="#">Comment</a> 
+        <a href="#">Share</a> 
+        <% if current_user.is_poster?(post) %>
+        
+          <%= link_to 'Edit', edit_society_post_path(post.society, post) %> 
+          <%= link_to 'Delete', [post.society, post], method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+  
+  <% end %>

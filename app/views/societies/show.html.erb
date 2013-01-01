@@ -1,34 +1,62 @@
-<h2><%= @society.name %></h2>
+<h1><%= @society.name %></h1>
 <div class="row">
   <div class="span3">
     
       
-    <% if !current_user.is_member?(@society) %>
-      <%= link_to 'Join this society!', join_society_path(:user => current_user), :method => :post, :class => 'btn btn-primary' %>
-    <% else %>
-      <%= link_to 'Leave this society', leave_society_path(:user => current_user), :method => :post, :class => 'btn btn-primary' %>
-    <% end %>
-    <br /><br />
-    <%= link_to 'Edit society', edit_society_path(@society), :class => 'btn btn-primary' %><br />
+    
     <p>
-    <b>Members</b><br />
+    <h2>Members</h2>
       <% for user in @society.users do %>
         <%= link_to user.name, user %><br />
       <% end %>
     </p>
-    <h3>Location</h3>
+
+    <p>
+    <h2>Location</h2>
       <% @society.location_list.each do |location| %>
-        <%= link_to location, tagged_url(:tag => location) %>
+        <%= link_to location, tagged_url(:tag => location), :class => 'btn btn-warning' %>
       <% end %>
+    </p>
    
-    <h3>Categories</h3>
+   <p>
+    <h2>Categories</h2>
       <% @society.category_list.each do |category| %>
-        <%= link_to category, tagged_url(:tag => category) %>
+        <%= link_to category, tagged_url(:tag => category), :class => 'btn btn-success' %>
       <% end %>
+    </p>
+
+    <p>
+    <h2>Society events</h2>
+      <% if !@society.events.empty? %>
+        <% @society.events.each do |event| %>
+          <%= link_to event.title, [@society, event] %><br />
+        <% end %>
+      <% end %>
+      <%= link_to 'Create a society event', new_society_event_path(@society), :class => "btn btn-primary" %>
+    </p>
+    
+    <p>
+    <h2>Manage</h2>
+    
+    <% if !current_user.is_member?(@society) %>
+      <%= link_to 'Join this society!', join_society_path(:user => current_user), :method => :post, :class => 'btn btn-success' %>
+    <% else %>
+      <%= link_to 'Leave this society', leave_society_path(:user => current_user), :method => :post, :class => 'btn btn-danger' %>
+    <% end %>
+    <br /><br />
+    <%= link_to 'Edit society', edit_society_path(@society), :class => 'btn btn-primary' %>
+    </p>
+
 
 
 
  
+   
+  </div>
+  <div class="span6">
+    <h2>Share</h2>
+    <%= render 'post' %>
+    
    
   </div>
 </div>

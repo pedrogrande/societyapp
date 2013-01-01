@@ -1,0 +1,46 @@
+<%= simple_form_for([@society, @society.posts.new]) do |f| %>
+  <% if @society.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :title, :placeholder => "Post title", :label => false %>
+    <%= f.text_area :content, :placeholder => "Post", :rows => 4, :cols => 60 %>
+
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Post', :class => 'btn-primary' %>
+  </div>
+<% end %>
+  
+  <% if @society.posts %>
+  <h2>Recent posts</h2>
+    <% @posts.each do |post| %>
+  
+      <div class="wall-post">
+        <div class="post-head">
+          
+          <%= image_tag("chrispp.png") %>
+            
+          <span class="post-user-name"><%= post.user.try :name %></span><br />
+          <span class="post-date">Posted at: <%= post.created_at.strftime("%I:%M:%P on %A, %e %b %Y") %></span>
+            
+        </div>
+
+        <div class="post-content">
+            <%= post.title %><br />
+            <%= auto_link(post.content) %><br />
+        </div>
+      </div>
+      
+    <% end %>
+  <% end %>

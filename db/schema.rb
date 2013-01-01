@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230134144) do
+ActiveRecord::Schema.define(:version => 20121231042719) do
+
+  create_table "event_invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "status",     :default => "invited"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "event_invitations", ["event_id"], :name => "index_event_invitations_on_event_id"
+  add_index "event_invitations", ["user_id"], :name => "index_event_invitations_on_user_id"
+
+  create_table "events", :force => true do |t|
+    t.integer  "society_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "type"
+    t.string   "location"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "finish_time"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "events", ["society_id"], :name => "index_events_on_society_id"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +50,19 @@ ActiveRecord::Schema.define(:version => 20121230134144) do
 
   add_index "memberships", ["society_id"], :name => "index_memberships_on_society_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "type"
+    t.integer  "society_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "posts", ["society_id"], :name => "index_posts_on_society_id"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -57,6 +98,20 @@ ActiveRecord::Schema.define(:version => 20121230134144) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "dob"
+    t.string   "sex"
+    t.string   "city"
+    t.string   "country"
+    t.string   "profile_pic"
+    t.text     "about_me"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

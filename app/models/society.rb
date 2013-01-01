@@ -8,6 +8,8 @@ class Society < ActiveRecord::Base
 
   has_many :memberships
   has_many :users, :through => :memberships
+  has_many :posts
+  has_many :events
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false

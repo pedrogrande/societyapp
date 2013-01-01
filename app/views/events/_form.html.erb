@@ -1,0 +1,17 @@
+<%= simple_form_for([@society, @event]) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    
+    <%= f.input :title, :placeholder => 'Event title', :label => false  %>
+    <%= f.input :description, :input_html => { :cols => 80, :rows => 3 }, :placeholder => "Status, links etc.", :label => false  %>
+    <%= f.input :location, :placeholder => "Street address, suburb", :label => false  %>
+    <%= f.input :date, :as => :date %>
+    <%= f.input :start_time, :as => :time %>
+    <%= f.input :finish_time, :as => :time %>
+    <%= f.association :users, :label => "Invite people in the group", :collection => @society.users, :as => :check_boxes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Finalise event' %>
+  </div>
+<% end %>

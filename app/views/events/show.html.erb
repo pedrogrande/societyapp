@@ -1,0 +1,48 @@
+<h1><%= @event.title %></h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  
+  <%= link_to @event.society.name, @event.society, :class => "btn btn-success btn-small" %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Event owner:</b>
+  <%= @event.user_id %>
+</p>
+
+<p>
+  <b>Event type:</b>
+  <%= @event.type %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @event.start_time.strftime("%I:%M %P") %>
+</p>
+
+<p>
+  <b>Finish time:</b>
+  <%= @event.finish_time.strftime("%I:%M %P") %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_society_event_path(@society, @event) %> |
+<%= link_to 'Back', @society %>

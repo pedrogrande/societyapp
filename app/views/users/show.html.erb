@@ -1,0 +1,52 @@
+<h1><%= @user.name %>'s account</h1>
+<div class="row">
+  <div class="span3">
+    <h2>Account info</h2>
+    <p>Userame: <%= @user.name %></p>
+    <p>Email: <%= @user.email if @user.email %></p>
+    <%= link_to 'Change email/password', edit_user_registration_path %>
+
+    <h2>My societies</h2>
+    <% @user.societies.each do |user_society| %>
+      <p><%=link_to user_society.name, user_society, :class => "btn btn-success btn-small" %></p>
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <h2>My profile</h2>
+      <% if current_user.user_profile %>
+        <p id="notice"><%= notice %></p>
+        <p>
+          <b>Profile pic:</b><br />
+          <%= image_tag @user_profile.profile_pic.to_s %>
+        </p>
+
+        <p>
+          <b>Sex:</b>
+          <%= @user_profile.sex %>
+        </p>
+
+        <p>
+          <b>Country:</b>
+          <%= @user_profile.country %>
+        </p>
+
+        <p>
+          <b>City:</b>
+          <%= @user_profile.city %>
+        </p>
+
+        <p>
+          <b>About me:</b>
+          <%= @user_profile.about_me %>
+        </p>
+
+
+        <%= link_to 'Edit', edit_user_profile_path(@user_profile) %> |
+      
+      <% else %>
+        <%= link_to 'Create your profile', new_user_profile_path(current_user) %>
+      <% end %>
+    </div>
+
+</div>

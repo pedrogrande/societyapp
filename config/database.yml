@@ -50,7 +50,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: societyapp_production
+  database: dpkvhrd6n4vhv
   pool: 5
-  username: societyapp
-  password:
+  username: iqmstcakurwlhz
+  password: 3RPCjO2kn8ZsTuSRN3rag-ms4o
+  host: ec2-54-243-188-54.compute-1.amazonaws.com

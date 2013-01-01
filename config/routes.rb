@@ -1,5 +1,6 @@
 Societyapp::Application.routes.draw do
-  
+
+
   authenticated :user do
     root :to => "home#index"
   end
@@ -8,9 +9,17 @@ Societyapp::Application.routes.draw do
   end
 
   devise_for :users
-  resources :users
+  resources :users do
+    resources :user_profiles, :as => "profiles"
+    member do
+      get :groups
+    end
+  end
 
   resources :societies do
+    resources :posts
+    resources :events
+    resources :tournaments, :controller => 'events', :type => "Tournament"
     member do
       get :members
       post :join

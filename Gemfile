@@ -47,7 +47,10 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'country_select'
 gem 'heroku'
-gem 'taps'
+group :development do
+  gem 'taps'
+  gem 'sqlite3'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

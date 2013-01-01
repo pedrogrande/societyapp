@@ -1,31 +1,57 @@
-<h1>Welcome to Society</h1>
+<div class="row">
+  <div class="span12">
+    <h1>Welcome to Society</h1>
+  </div>
+</div>
 
-<% if @societies %>
-  <h2>My societies</h2>
-  <% if @user.societies %>
-    <% @user.societies.each do |user_society| %>
-      <p><%=link_to user_society.name, user_society, :class => "btn btn-success btn-small" %></p>
-    <% end %>
-  <% end %>
-
-
-  <% if !@user.societies %>
-    <p>You are not currently in a society</p>
-  <% end %>
-
-  <% if @user.societies.count < @societies.count %>
-    <h2>Join a society</h2>
+<div class="row">
+  <div class="span3">
     <% if @societies %>
-      <% @societies.each do |society| %>
-        <% if !current_user.is_member?(society) %>
-          <p><%= link_to society.name, society, :class => "btn btn-success btn-small" %></p>
+      <h2>My societies</h2>
+      <% if @user.societies %>
+        <% @user.societies.each do |user_society| %>
+          <p><%=link_to user_society.name, user_society, :class => "btn btn-success btn-small" %></p>
+        <% end %>
+      <% end %>
+
+
+      <% if !@user.societies %>
+        <p>You are not currently in a society</p>
+      <% end %>
+
+      <% if @user.societies.count < @societies.count %>
+        <h2>Join a society</h2>
+        <% if @societies %>
+          <% @societies.each do |society| %>
+            <% if !current_user.is_member?(society) %>
+              <p><%= link_to society.name, society, :class => "btn btn-success btn-small" %></p>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
-<p><%= link_to 'Form a new society!', new_society_path, :class => "btn btn-info" %></p>
+    <p><%= link_to 'Form a new society!', new_society_path, :class => "btn btn-info" %></p>
+    <p><%= link_to 'My profile', user_path(current_user), :class => "btn btn-danger" %></p>
+    <br />
+    
+    <% if !@user.events.empty? %>
+      <h2>My events</h2>
+      <% @user.events.each do |event| %>
+        <div class="home-event-<%= event.event_invitations.where("user_id = ?", current_user.id).first.status %>">
+          <span class="home-event-title"><%= link_to event.title, [event.society, event] %></span><br />
+          <%= event.society.name %><br />
+          <%= event.event_invitations.where("user_id = ?", current_user.id).first.status.titleize %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <h2>Recent posts</h2>
+    <%= render 'wall' %>
+  </div>
+</div>
 
 
 
