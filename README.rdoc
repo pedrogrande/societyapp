@@ -1,4 +1,4 @@
 SocietyApp
 
-This is a web app I have built to teach myself RoR.
+This is a web app I have built to teach myself advanced RoR.
 
